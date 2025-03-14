@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>明日方舟连连看</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <div class="flex items-center justify-between w-full">
+                <h1 class="game-title">明日方舟连连看</h1>
+                <div class="flex items-center gap-3">
+                    <div class="stats-container">
+                        <div class="stat">
+                            <span class="stat-label">已匹配</span>
+                            <span id="matches-count" class="stat-value">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">尝试次数</span>
+                            <span id="attempts-count" class="stat-value">0</span>
+                        </div>
+                    </div>
+                    <button id="reset-button" class="reset-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"></path><path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path><path d="M21 22v-6h-6"></path><path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path></svg>
+                        重置游戏
+                    </button>
+                </div>
+            </div>
+            <div class="difficulty-selector">
+                <button class="difficulty-button active" data-size="4">简单 (4×4)</button>
+                <button class="difficulty-button" data-size="6">中等 (6×6)</button>
+                <button class="difficulty-button" data-size="8">困难 (8×8)</button>
+            </div>
+        </div>
+        
+        <div id="game-board" class="game-board">
+            <!-- Game tiles will be generated here -->
+        </div>
+        
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 class="modal-title">恭喜你！</h2>
+                <p class="modal-text">你成功完成了所有匹配！</p>
+                <div class="modal-stats">
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">尝试次数</span>
+                        <span id="final-attempts" class="modal-stat-value">0</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">用时</span>
+                        <span id="final-time" class="modal-stat-value">0s</span>
+                    </div>
+                </div>
+                <button id="play-again" class="play-again-button">再玩一次</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p><a href="https://github.com/IceMoeMoe/akns_llk" target="_blank">View Github.</a></p>
+    </footer>
+    
+    <script src="images.js"></script>
+    <script src="game.js"></script>
+    <script>
+        window.addEventListener("wheel", (e)=> {
+            const isPinching = e.ctrlKey
+            if(isPinching) e.preventDefault()
+        }, { passive: false })
+    </script>
+</body>
+</html>
